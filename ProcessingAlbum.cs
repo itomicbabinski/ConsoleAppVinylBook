@@ -11,7 +11,7 @@ namespace ConsoleAppVinylBook
     {
         public List<Album> Albums { get; set; }
 
-        public ObradaSmjer()
+        public ProcessingAlbum()
         {
             Albums = new List<Album>();
             if (Common.DEV)

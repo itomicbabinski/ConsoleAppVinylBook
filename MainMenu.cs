@@ -8,11 +8,13 @@ namespace ConsoleAppVinylBook
 {
     internal class MainMenu
     {
-
+        public ProcessingAlbum ProcessingAlbum { get; set; }  // da ne mora raditi instancu u konstruktoru
+        public ProcessingUser ProcessingUser { get; set; }
+        public ProcessingExchange ProcessingExchange { get; set; }
         public MainMenu()
         {
             Common.DEV = true;
-            //ObradaSmjer = new ObradaSmjer();
+            ProcessingAlbum = new ProcessingAlbum();
             //ObradaPolaznik = new ObradaPolaznik();
             //ObradaGrupa = new ObradaGrupa(this);
             //UcitajPodatke();
@@ -51,7 +53,7 @@ namespace ConsoleAppVinylBook
             {
                 case 1:
                     Console.Clear();
-                    //ObradaSmjer.PrikaziIzbornik();
+                    //ProcessingAlbum.ShowMenu();
                     ShowMainMenu();
                     break;
                 case 2:
