@@ -20,7 +20,7 @@ namespace ConsoleAppVinylBook
             }
         }
 
-        private void ReadTestData()
+        public void ReadTestData()
         {
             Albums.Add(new() { Title = "Trainspotting" });
             Albums.Add(new() { Title = "Alibaba" });
@@ -43,18 +43,22 @@ namespace ConsoleAppVinylBook
             switch (Common.ReadNumberRespond("Select a menu item", 1, 5))
             {
                 case 1:
+                    Console.Clear();
                     ShowAlbums();
                     ShowMenu();
                     break;
                 case 2:
+                    Console.Clear();
                     AddNewAlbum();
                     ShowMenu();
                     break;
                 case 3:
+                    Console.Clear();
                     ChangeAlbum();
                     ShowMenu();
                     break;
                 case 4:
+                    Console.Clear();
                     DeleteAlbum();
                     ShowMenu();
                     break;
@@ -67,30 +71,37 @@ namespace ConsoleAppVinylBook
         private void DeleteAlbum()
         {
             ShowAlbums();
-            var selected= Albums[Common.ReadNumberRespond("Select number of album to delete",
-                1, Albums.Count) - 1];
+            
+            int rb = Common.ReadNumberRespond("Select number of album to delete",
+                0, Albums.Count);
+            if ( rb > 0) {
+                var selected = Albums[rb-1];
+                if (Common.ReadBool("Delete " + selected.Title + "? (YES/NO)", "yes")) 
+                {
+                    Albums.Remove(selected);
+                }
 
-            if (Common.ReadBool("Delete " + selected.Title + "? (YES/NO)", "yes"))
-            {
-                Albums.Remove(selected);
-            }
-
+             }
         }
 
         private void ChangeAlbum()
         {
             ShowAlbums();
-            var selected = Albums[Common.ReadNumberRespond("Odaberi redni broj smjera za promjenu",
-                1, Albums.Count) - 1];
-            selected.Title = Common.ReadString("Input Album title", 50, true);
-            selected.Artist = Common.ReadString("Input Album artist", 50, true);
-            selected.Genre = Common.ReadString("Input Album genre", 50, true);
-            selected.Language = Common.ReadBool("Is the ExYu language of the album (YES/NO)", "da");
-
+            int rb = Common.ReadNumberRespond("Select number of album to delete",
+                 0, Albums.Count);
+            if (rb > 0)
+            {
+                var selected = Albums[rb - 1];
+                selected.Title = Common.ReadString("Input Album title", 50, true);
+                selected.Artist = Common.ReadString("Input Album artist", 50, true);
+                selected.Genre = Common.ReadString("Input Album genre", 50, true);
+                selected.Language = Common.ReadBool("Is the ExYu language of the album (YES/NO)", "da");
+            }
         }
 
         public void ShowAlbums()
         {
+            Console.WriteLine("0. CANCEL ");
             Console.WriteLine("*****************************");
             Console.WriteLine("List of Albums ");
             int rb = 0;

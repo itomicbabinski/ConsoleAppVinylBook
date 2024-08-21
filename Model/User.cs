@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppVinylBook.Model
 {
-    internal class User : Entitet
+    internal class User : Entitet, IComparable<User>
     {
 
         public string? FirstName { get; set; }
@@ -14,6 +14,11 @@ namespace ConsoleAppVinylBook.Model
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public string? Address { get; set; }
+
+        public int CompareTo(User? other)
+        {
+            return FirstName.CompareTo(other.FirstName);
+        }
 
         public override string ToString()
         {

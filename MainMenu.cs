@@ -9,13 +9,14 @@ namespace ConsoleAppVinylBook
     internal class MainMenu
     {
         public ProcessingAlbum ProcessingAlbum { get; set; }  // da ne mora raditi instancu u konstruktoru
+        public ProcessingUser ProcessingAccount { get; set; }
         public ProcessingUser ProcessingUser { get; set; }
         public ProcessingExchange ProcessingExchange { get; set; }
         public MainMenu()
         {
             Common.DEV = true;
             ProcessingAlbum = new ProcessingAlbum();
-            //ObradaPolaznik = new ObradaPolaznik();
+            ProcessingUser = new ProcessingUser();
             //ObradaGrupa = new ObradaGrupa(this);
             //UcitajPodatke();
             HelloMesage();
@@ -30,43 +31,47 @@ namespace ConsoleAppVinylBook
             //{
             //    StreamReader file = File.OpenText(Path.Combine(docPath, "smjerovi.json"));
             //    ObradaSmjer.Smjerovi = JsonConvert.DeserializeObject<List<Smjer>>(file.ReadToEnd());
-
-
             //}
-
         }
 
         private void ShowMainMenu()
         {
             Console.WriteLine("MainMenu");
-            Console.WriteLine("1. Users");
-            Console.WriteLine("2. Albums");
-            Console.WriteLine("3. Exchanges");
-            Console.WriteLine("4. EXIT");
+            Console.WriteLine("1. My Account");
+            Console.WriteLine("2. Users");
+            Console.WriteLine("3. Albums");
+            Console.WriteLine("4. Market");
+            Console.WriteLine("5. EXIT");
             ChoseOptionMainMenu();
         }
 
         private void ChoseOptionMainMenu()
         {
 
-            switch (Common.ReadNumberRespond("Select a menu item", 1, 4))
+            switch (Common.ReadNumberRespond("Select a menu item", 1, 5))
             {
+
                 case 1:
-                    Console.Clear();
-                    //ProcessingAlbum.ShowMenu();
-                    ShowMainMenu();
-                    break;
-                case 2:
                     Console.Clear();
                     //ObradaPolaznik.PrikaziIzbornik();
                     ShowMainMenu();
                     break;
+                case 2:
+                    Console.Clear();
+                    ProcessingUser.ShowMenu();
+                    ShowMainMenu();
+                    break;
                 case 3:
+                    Console.Clear();
+                    ProcessingAlbum.ShowMenu();
+                    ShowMainMenu();
+                    break;
+                case 4:
                     Console.Clear();
                     //ObradaGrupa.PrikaziIzbornik();
                     ShowMainMenu();
                     break;
-                case 4:
+                case 5:
                     Console.WriteLine("Exit from application... Bye!");
                     SaveData();
                     break;
